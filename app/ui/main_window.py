@@ -2,9 +2,20 @@ from dataclasses import dataclass
 
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QAction
-from PyQt6.QtWidgets import QListWidget, QListWidgetItem, QMainWindow, QSplitter, QStackedWidget, QToolBar
+from PyQt6.QtWidgets import (
+    QListWidget,
+    QListWidgetItem,
+    QMainWindow,
+    QSplitter,
+    QStackedWidget,
+    QToolBar,
+)
 
-from app.ui.pages import create_about_page, create_home_page, create_placeholder_page
+from app.ui.pages import (
+    create_about_page,
+    create_home_page,
+    create_placeholder_page,
+)
 from app.ui.styles import APP_STYLE
 
 
@@ -19,6 +30,7 @@ class MainWindow(QMainWindow):
 
     def __init__(self) -> None:
         super().__init__()
+
         self.setWindowTitle("OzonCardAI")
         self.resize(1200, 800)
         self.setMinimumSize(1000, 680)
@@ -41,29 +53,46 @@ class MainWindow(QMainWindow):
         self._create_toolbar()
         self._create_status_bar()
         self._create_central_layout()
+
         self._select_page(0)
 
     def _create_menu_bar(self) -> None:
         menu_bar = self.menuBar()
 
         file_menu = menu_bar.addMenu("Файл")
-        file_menu.addAction(self._create_action("Главная", lambda: self._select_page(0)))
+        file_menu.addAction(
+            self._create_action("Главная", lambda: self._select_page(0))
+        )
         file_menu.addSeparator()
         file_menu.addAction(self._create_action("Выход", self.close))
 
         settings_menu = menu_bar.addMenu("Настройки")
-        settings_menu.addAction(self._create_action("Открыть настройки", lambda: self._select_page(5)))
+        settings_menu.addAction(
+            self._create_action("Открыть настройки", lambda: self._select_page(5))
+        )
 
         help_menu = menu_bar.addMenu("Помощь")
-        help_menu.addAction(self._create_action("О программе", lambda: self._select_page(6)))
+        help_menu.addAction(
+            self._create_action("О программе", lambda: self._select_page(6))
+        )
 
     def _create_toolbar(self) -> None:
         toolbar = QToolBar("Главная панель", self)
         toolbar.setMovable(False)
-        toolbar.addAction(self._create_action("Главная", lambda: self._select_page(0)))
-        toolbar.addAction(self._create_action("WB товары", lambda: self._select_page(1)))
-        toolbar.addAction(self._create_action("Ozon", lambda: self._select_page(2)))
-        toolbar.addAction(self._create_action("AI", lambda: self._select_page(3)))
+
+        toolbar.addAction(
+            self._create_action("Главная", lambda: self._select_page(0))
+        )
+        toolbar.addAction(
+            self._create_action("WB товары", lambda: self._select_page(1))
+        )
+        toolbar.addAction(
+            self._create_action("Ozon", lambda: self._select_page(2))
+        )
+        toolbar.addAction(
+            self._create_action("AI", lambda: self._select_page(3))
+        )
+
         self.addToolBar(toolbar)
 
     def _create_status_bar(self) -> None:
@@ -74,8 +103,10 @@ class MainWindow(QMainWindow):
         self._populate_pages()
 
         splitter = QSplitter(Qt.Orientation.Horizontal, self)
+
         splitter.addWidget(self.navigation)
         splitter.addWidget(self.pages)
+
         splitter.setStretchFactor(0, 0)
         splitter.setStretchFactor(1, 1)
         splitter.setSizes([260, 940])
@@ -129,9 +160,13 @@ class MainWindow(QMainWindow):
             return
 
         self.pages.setCurrentIndex(index)
+
         if self.navigation.currentRow() != index:
             self.navigation.setCurrentRow(index)
-        self.statusBar().showMessage(self._navigation_items[index].status_message)
+
+        self.statusBar().showMessage(
+            self._navigation_items[index].status_message
+        )
 
     def _create_action(self, title: str, slot) -> QAction:
         action = QAction(title, self)
