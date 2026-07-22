@@ -60,7 +60,9 @@ class MainWindow(QMainWindow):
         menu_bar = self.menuBar()
 
         file_menu = menu_bar.addMenu("Файл")
-        file_menu.addAction(self._create_action("Главная", lambda: self._select_page(0)))
+        file_menu.addAction(
+            self._create_action("Главная", lambda: self._select_page(0))
+        )
         file_menu.addSeparator()
         file_menu.addAction(self._create_action("Выход", self.close))
 
@@ -78,10 +80,18 @@ class MainWindow(QMainWindow):
         toolbar = QToolBar("Главная панель", self)
         toolbar.setMovable(False)
 
-        toolbar.addAction(self._create_action("Главная", lambda: self._select_page(0)))
-        toolbar.addAction(self._create_action("WB товары", lambda: self._select_page(1)))
-        toolbar.addAction(self._create_action("Ozon", lambda: self._select_page(2)))
-        toolbar.addAction(self._create_action("AI", lambda: self._select_page(3)))
+        toolbar.addAction(
+            self._create_action("Главная", lambda: self._select_page(0))
+        )
+        toolbar.addAction(
+            self._create_action("WB товары", lambda: self._select_page(1))
+        )
+        toolbar.addAction(
+            self._create_action("Ozon", lambda: self._select_page(2))
+        )
+        toolbar.addAction(
+            self._create_action("AI", lambda: self._select_page(3))
+        )
 
         self.addToolBar(toolbar)
 
