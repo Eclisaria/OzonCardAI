@@ -27,8 +27,8 @@ def create_home_page() -> QWidget:
 
     cards = QGridLayout()
     cards.setSpacing(16)
-    cards.addWidget(_info_card("Статус проекта", "Создается профессиональный интерфейс приложения."), 0, 0)
-    cards.addWidget(_info_card("Этап разработки", "Этап 1 — фундамент и навигация."), 0, 1)
+    cards.addWidget(_info_card("Статус проекта", "Этап «Интерфейс» завершён."), 0, 0)
+    cards.addWidget(_info_card("Этап разработки", "Следующий этап — настройки приложения."), 0, 1)
     cards.addWidget(_info_card("Версия приложения", APP_VERSION), 1, 0)
     cards.addWidget(
         _info_card(
@@ -92,7 +92,7 @@ def create_about_page() -> QWidget:
             "bodyText",
         )
     )
-    card_layout.addWidget(_label("GitHub: будет добавлен позже", "bodyText"))
+    card_layout.addWidget(_label("GitHub: https://github.com/Eclisaria/OzonCardAI", "bodyText"))
     card_layout.addWidget(_label("Автор: команда OzonCardAI", "bodyText"))
     card_layout.addStretch()
     layout.addWidget(card)
